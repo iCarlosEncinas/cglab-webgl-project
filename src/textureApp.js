@@ -6,11 +6,6 @@ import Time from './Engine/Time.js';
 const canvas = document.getElementById('glcanvas');
 const gl = canvas.getContext('webgl2');
 
-// clear screen
-
-
-//Declare shader
-
 
 const main = async ()=>{
 
@@ -76,13 +71,11 @@ const main = async ()=>{
         gl.clearColor(0, 0, 0, 1);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
-        //vertices
         gl.bindBuffer(gl.ARRAY_BUFFER, appInfo.buffers.positionBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(appInfo.triangleCoords), gl.STATIC_DRAW);
         gl.enableVertexAttribArray(appInfo.attribs.position);
         gl.vertexAttribPointer(appInfo.attribs.position, 2, gl.FLOAT, gl.FALSE, 0, 0);
 
-        //texture
         gl.bindBuffer(gl.ARRAY_BUFFER, appInfo.buffers.textureBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(appInfo.textureCoords), gl.STATIC_DRAW);
         gl.enableVertexAttribArray(appInfo.attribs.texturePosition);

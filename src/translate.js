@@ -1,17 +1,11 @@
 const canvas = document.getElementById('glcanvas');
 const gl = canvas.getContext('webgl2');
 
-// clear screen
-
 
 const render = ()=>{
     gl.clearColor(0, 0, 0, 1);
     gl.clear(gl.COLOR_BUFFER_BIT);
 }
-
-//render();
-
-//Declare shader
 
 const vertexShader = `#version 300 es
     precision mediump float;
@@ -40,7 +34,6 @@ const fragmentShader = `#version 300 es
     }
 `;
 
-//Compile shader
 
 const vs = gl.createShader(gl.VERTEX_SHADER);
 const fs = gl.createShader(gl.FRAGMENT_SHADER);
@@ -142,13 +135,6 @@ const update = ()=>{
 
     const deltaTime = (Date.now() - now) * 0.001;
     now = Date.now();
-
-    /*mat4.rotate(
-        modelMatrix,
-        modelMatrix,
-        deltaTime * rotSpeed.value,
-        [0, 0, 1]
-    );*/
 
     mat4.translate(
         modelMatrix,

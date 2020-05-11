@@ -7,17 +7,12 @@ import Animation from './Engine/Animation.js';
 const canvas = document.getElementById('glcanvas');
 const gl = canvas.getContext('webgl2');
 
-// clear screen
-
-
-//Declare shader
 
 
 const main = async ()=>{
 
     const program = await new Shader(gl, '../shaders/TextureShader/textureVS.glsl', '../shaders/TextureShader/textureFS.glsl');
 
-    //Compile shader
 
     gl.useProgram(program);
 
@@ -68,7 +63,6 @@ const main = async ()=>{
         ]
     }
 
-    //Running animation state starts
 
     const runAnim = appInfo.animations[0];
     runAnim.play();
@@ -80,7 +74,6 @@ const main = async ()=>{
             runAnim.play();
         }
     });
-    //Running animation state ends
 
     mat4.perspective(
         appInfo.matrices.projectionMatrix,
@@ -97,17 +90,14 @@ const main = async ()=>{
     );
 
     const update = ()=>{
-        //console.log(appInfo.time.deltaTime());
         gl.clearColor(0, 0, 0, 1);
         gl.clear(gl.COLOR_BUFFER_BIT);
 
-        //vertices
         gl.bindBuffer(gl.ARRAY_BUFFER, appInfo.buffers.positionBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(appInfo.triangleCoords), gl.STATIC_DRAW);
         gl.enableVertexAttribArray(appInfo.attribs.position);
         gl.vertexAttribPointer(appInfo.attribs.position, 2, gl.FLOAT, gl.FALSE, 0, 0);
 
-        //texture
         gl.bindBuffer(gl.ARRAY_BUFFER, appInfo.buffers.textureBuffer);
         gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(runAnim.getTexCoords()), gl.STATIC_DRAW);
         gl.enableVertexAttribArray(appInfo.attribs.texturePosition);
